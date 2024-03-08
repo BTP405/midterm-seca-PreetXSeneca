@@ -46,7 +46,10 @@ class Student:
         Returns:
             None
         """
-        self.enrolled_courses.append(course)
+        for pre in course.prerequisite:
+            for crs in self.enrolled_courses:
+                if pre == crs:
+                    self.enrolled_courses.append(course)
         pass
 
     def drop_course(self, course):
@@ -59,7 +62,7 @@ class Student:
         Returns:
             None
         """
-        student_courses = [crs for crs in self.enrolled_courses if crs.name != course.name]
+        student_courses = [crs for crs in self.enrolled_courses if crs.course_name != course.course_name]
         pass
 
 
@@ -75,10 +78,10 @@ class Student:
         Returns:
             None
         """
-        for crs in enrolled_courses:
-            if crs.name = course.name:
+        for crs in self.enrolled_courses:
+            if crs.course_name == course.course_name:
                 course_to_grade = crs
                 break
-        if        
+              
         self.grade[course_to_grade] = {assessment.assessment_type : grade}
         pass

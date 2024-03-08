@@ -25,7 +25,7 @@ class Course:
         self.course_name = course_name
         self.instructor = instructor
         self.sections = 1
-        self.prerequisite = prerequisite
+        self.prerequisite = prerequisites
         self.enrolled_students = []
         self.waitlisted_students = []
         self.assessments = []
@@ -38,7 +38,8 @@ class Course:
         Args:
             student (Student): The student object to be enrolled or added to the waitlist.
         """
-        if len(enrolled_students) >= sections:
+        print(len(self.enrolled_students), self.sections)
+        if len(self.enrolled_students) <= self.sections:
             self.waitlisted_students.append(student)
             return
 
@@ -52,12 +53,12 @@ class Course:
         Args:
             student (Student): The student object to be removed from the course or waitlist.
         """
-        if stu in enrolled_students:
+        if stu in self.enrolled_students:
             remaining_students = [std for std in self.enrolled_students if std.student_id != student.student_id]
             self.enrolled_students = remaining_students
             return
 
-        if stu in waitlisted_students:
+        if stu in self.waitlisted_students:
             remaining_students = [std for std in self.waitlisted_students if std.student_id != student.student_id]
             self.waitlisted_students = remaining_students
             return
