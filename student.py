@@ -29,6 +29,10 @@ class Student:
             name (str): The name of the student.
             student_id (int): The unique ID of the student.
         """
+        self.name = name
+        self.student_id = student_id
+        self.enrolled_courses = []
+        self.grades = {}
         pass
 
 
@@ -42,6 +46,7 @@ class Student:
         Returns:
             None
         """
+        self.enrolled_courses.append(course)
         pass
 
     def drop_course(self, course):
@@ -54,6 +59,7 @@ class Student:
         Returns:
             None
         """
+        student_courses = [crs for crs in self.enrolled_courses if crs.name != course.name]
         pass
 
 
@@ -69,4 +75,10 @@ class Student:
         Returns:
             None
         """
+        for crs in enrolled_courses:
+            if crs.name = course.name:
+                course_to_grade = crs
+                break
+        if        
+        self.grade[course_to_grade] = {assessment.assessment_type : grade}
         pass

@@ -22,6 +22,13 @@ class Course:
             sections (int, optional): The number of sections available for the course (default is 1).
             prerequisites (list, optional): List of prerequisite courses for the course (default is None).
         """
+        self.course_name = course_name
+        self.instructor = instructor
+        self.sections = 1
+        self.prerequisite = prerequisite
+        self.enrolled_students = []
+        self.waitlisted_students = []
+        self.assessments = []
         pass
 
 
@@ -31,6 +38,11 @@ class Course:
         Args:
             student (Student): The student object to be enrolled or added to the waitlist.
         """
+        if len(enrolled_students) >= sections:
+            self.waitlisted_students.append(student)
+            return
+
+        self.enrolled_students.append(student)
         pass
 
 
@@ -40,6 +52,15 @@ class Course:
         Args:
             student (Student): The student object to be removed from the course or waitlist.
         """
+        if stu in enrolled_students:
+            remaining_students = [std for std in self.enrolled_students if std.student_id != student.student_id]
+            self.enrolled_students = remaining_students
+            return
+
+        if stu in waitlisted_students:
+            remaining_students = [std for std in self.waitlisted_students if std.student_id != student.student_id]
+            self.waitlisted_students = remaining_students
+            return
         pass
 
 
@@ -49,6 +70,7 @@ class Course:
         Args:
             instructor (str): The name of the instructor to be assigned to the course.
         """
+        self.instructor = instructor
         pass
 
     def add_assessment(self, assessment):
@@ -57,5 +79,6 @@ class Course:
         Args:
             assessment (str): The description of the assessment to be added.
         """
+        self.assessments.append(assessment)
         pass
 
